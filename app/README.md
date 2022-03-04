@@ -1,5 +1,5 @@
 # PITCHES
-## Behaviour Drivn Development(BBD) 
+## Behaviour Drivn Development(BDD) 
 
 ## Description
 Pitches is a python application which uses few words under one minute to impress.
