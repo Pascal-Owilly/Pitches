@@ -37,6 +37,36 @@
         <!-- so we don't see navbar because we don't have home.html and I have not extended it in the base.html -->
     </nav>
 
+    <!-- This is where we see flash messages -->
+    <!-- with is going to define a variable called messages wwhic is equal to get flashed messages-->
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %} 
+    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-success alert-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    {% endif %}
+    {% endfor%}
+    {% endif %}
+    {% endwith %}
+     
+    <!-- confirming if we have messages we are going-->
+    
+
     <div class="container">
         {% block content %}
         {% endblock %}

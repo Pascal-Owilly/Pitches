@@ -1,6 +1,8 @@
 
-from flask import Blueprint, render_template, request
+from unicodedata import category
+from flask import Blueprint, render_template, request, flash
 # request will get the form data
+# Import flash will show the validation message
 
 
 auth = Blueprint('auth', __name__)
@@ -22,24 +24,22 @@ def signin():
     # differentiate between get request and post request
     if request.method == 'POST':
         email = request.form.get('email')
-        firstName.request.get('firstName')
+        firstName = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
         # Checking if the information is valid
    
         if len(email) < 4:
-            pass
+            flash('email is too short.', category='error')
         elif len(firstName) < 2:
-            pass
+            flash('first name is too short, enter atleat 2 characters', category='error')
         elif password1 != password2:
-            pass
+            flash('Passwords don not match', category='error')
         elif len(password1) < 7:
-            pass
+            flash('Passwords shoud be atleast 8 ccharacters', category='error')
+        else:
+            flash('Account created successfully!', category='success')    
 
         # if all the conditions are met we add the user to the database
-
-
-
-
     return render_template("sign_up.html")
