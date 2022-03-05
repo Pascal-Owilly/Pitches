@@ -18,30 +18,29 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <!-- include a button to expand navbar on mobile device -->
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
             <!-- loads icon and if pressed toggled icon button  -->
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <!-- defining nav items in the navbar -->
         <div class="collapse navbar-collapse" id="navbar">
-            <a class="nav-items nav-link" id="login" href="/login">Login</a>
+            <div class="navbar-nav">
+                <a class="nav-items nav-link" id="login" href="/login">Login</a>
+                <a class="nav-items nav-link" id="login" href="/logout">Logout</a>
+                <a class="nav-items nav-link" id="sign-up" href="/sign-up">Sign-Up</a>
+                <a class="nav-items nav-link" id="home" href="/">Home</a>
+            </div>
         </div>
 
-        <div class="collapse navbar-collapse" id="navbar">
-            <a class="nav-items nav-link" id="login" href="/logout">Logout</a>
-        </div>
 
-        <div class="collapse navbar-collapse" id="navbar">
-            <a class="nav-items nav-link" id="sign-up" href="/sign-up">Sign-Up</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbar">
-            <a class="nav-items nav-link" id="home" href="/">Home</a>
-        </div>
         <!-- so we don't see navbar because we don't have home.html and I have not extended it in the base.html -->
     </nav>
 
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
 
 
     <!-- This will load javascript related to css framework - bootstrap -->
