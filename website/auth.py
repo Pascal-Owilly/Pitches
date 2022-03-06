@@ -1,6 +1,7 @@
 
 from unicodedata import category
 from flask import Blueprint, render_template, request, flash
+# from . import db
 # request will get the form data
 # Import flash will show the validation message
 

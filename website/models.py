@@ -27,6 +27,9 @@ class User(db.Model, UserMixin):
     #   Making all the users to be able to find all of their notes
     notes = db.relationship('Note')
 
+    # Creating this database inside dander init file
+    
+
     
 
 

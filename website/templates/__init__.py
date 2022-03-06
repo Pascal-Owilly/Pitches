@@ -1,6 +1,8 @@
 from flask import Flask
 # Setting up database
 from flask_sqlalchemy import SQLAlchemy
+# We use this path module to determine whether or not path exists
+from os import path
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -16,7 +18,7 @@ def create_app():
     # initializing the database
     db.init_app(app)
     # defining database models
-    
+
 
     # telling flask we have different appllucation containing blueprint 
     from website.views import views
@@ -25,8 +27,23 @@ def create_app():
     # After importing the blueprintd we register them with flask app
     app.register_blueprint(views, url_prefix = '/')
     app.register_blueprint(auth, url_prefix = '/')
-    
 
+    # writing script that will checks everytime if we have created the database
+    # The .models ensures the models.py runs before we initialize or create our database
+
+    from website.models import User, Note
+
+    #  create_database(app)
+
+    
     return app
+
+    def create_database(app):
+        # This checks if the database already exists and if not creates it
+        # So we import path from os then use it
+        if not path.exists('website/' + DB_NAME):
+            db.create_all(app=app)
+            print('Created Database!')
+
 
     
