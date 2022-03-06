@@ -1,4 +1,10 @@
 from flask import Flask
+# Setting up database
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+DB_NAME = "database.db"
+
 
 def create_app():
     app = Flask(__name__, template_folder='../templates') # debugging template not found error
