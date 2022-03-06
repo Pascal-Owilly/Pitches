@@ -1,6 +1,11 @@
 
 from unicodedata import category
 from flask import Blueprint, render_template, request, flash
+# importing user class to be accessed ehn user signs in
+from .models import User
+# importing hash function because it does not have inverse
+# only checks if the password inputed equals the hash stores
+from werkzeug.security import generate_password_hash, check_password_hash
 # from . import db
 # request will get the form data
 # Import flash will show the validation message
@@ -40,6 +45,8 @@ def signin():
         elif len(password1) < 7:
             flash('Passwords shoud be atleast 8 ccharacters', category='error')
         else:
+            # method sha256 is a hashing algorithm
+            new_user = User(email=email, first_name=firstName, password=generate_password_hash(password1, method='sha256'))
             flash('Account created successfully!', category='success')    
 
         # if all the conditions are met we add the user to the database

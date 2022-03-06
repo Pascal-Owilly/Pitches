@@ -32,8 +32,9 @@ def create_app():
     # The .models ensures the models.py runs before we initialize or create our database
 
     from website.models import User, Note
-
-    #  create_database(app)
+    
+    # returning create app database
+  
 
     
     return app
@@ -44,6 +45,8 @@ def create_app():
         if not path.exists('website/' + DB_NAME):
             db.create_all(app=app)
             print('Created Database!')
+
+    create_database(app)        
 
 
     
