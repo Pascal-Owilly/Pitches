@@ -10,6 +10,11 @@ class Note(db.Model):
     data = db.Column(db.String(10000))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     
+    # associateng different information to different users (setting up relationship between class and user object)
+    # We do this in the form of a foreign key (a key that alwaysreferences a column of another database)
+    # It stores the id of one of the users who created the note
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Foreign key shows that we must pass a valid of an existing user to this column - one-many rel 
+
 
 class User(db.Model, UserMixin):
     # defining all columns we want to have stored in this table
@@ -18,6 +23,11 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
     #   then define class ⬆️
+    #   we are telling sqlalchemy to find a class and add note to the id everytime we create a note 
+    #   Making all the users to be able to find all of their notes
+    notes = db.relationship('Note')
+
+    
 
 
 
