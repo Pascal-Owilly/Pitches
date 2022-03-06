@@ -1,6 +1,6 @@
 
 from unicodedata import category
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 # importing user class to be accessed ehn user signs in
 from .models import User
 # importing hash function because it does not have inverse
@@ -47,7 +47,16 @@ def signin():
         else:
             # method sha256 is a hashing algorithm
             new_user = User(email=email, first_name=firstName, password=generate_password_hash(password1, method='sha256'))
+            # Adding this accout to our database
+            db.session.add(new_user)
+            # updating the database
+            db.session.commit()
             flash('Account created successfully!', category='success')    
+            # Redirecting user to the home page, we import redirect and url_for
+            # redirecting to hme page
+            return redirect(url_for('views.home'))
+              
+
 
         # if all the conditions are met we add the user to the database
     return render_template("sign_up.html")
