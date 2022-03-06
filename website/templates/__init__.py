@@ -9,8 +9,14 @@ DB_NAME = "database.db"
 def create_app():
     app = Flask(__name__, template_folder='../templates') # debugging template not found error
     app.config['SECRET_KEY'] = 'abc123'
-    # Telling flask that we are using DB_NAME database and where it will be located
+    # Telling flask that we are using DB_NAME database and where it will be located using sqlite
+    # It will store the database inside the app folder
+    # f string only works in python3.6 and above
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    # initializing the database
+    db.init_app(app)
+    # defining database models
+    
 
     # telling flask we have different appllucation containing blueprint 
     from website.views import views
