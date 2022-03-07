@@ -10,7 +10,9 @@ function deleteNote(noteId) {
 const upvote = document.querySelector('#btn_like')
 const downvote = document.querySelector('#dislike_btn')
 
+
 let counter = 0;
+
 
 upvote.addEventListener('click', like);
 downvote.addEventListener('click', dislike);
