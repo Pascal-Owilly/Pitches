@@ -1,5 +1,6 @@
 
-from unicodedata import category
+# from unicodedata import category
+from . import db
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 # importing user class to be accessed ehn user signs in
 from .models import User
@@ -15,7 +16,25 @@ auth = Blueprint('auth', __name__)
 
 # defining login, logout, signup
 @auth.route('/login', methods=['GET', 'POST']) # With GET nad POST requests we are able to accept get and post requests from this route
-def login():   
+def login():  
+
+    #  Allowing user to sign in if they have entered their credentials right
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        # checking if the user is valid, if ii's in the database
+        user = User.query.filter_by(email=email).first() # filtering all the users with the email
+
+        if user:
+            # accessing user with passord
+            # hashing the first password the checking it against inputed password
+            if check_password_hash(user.password, password):
+                flash('Logged in successfully', category='success')
+            else:
+                flash('INcorrect password, try again', category='error')
+        else:
+            flash('Email does not exist.', category='error')
 
     return render_template("login.html", boolean=True)
 
@@ -42,7 +61,7 @@ def signin():
             flash('first name is too short, enter atleat 2 characters', category='error')
         elif password1 != password2:
             flash('Passwords don not match', category='error')
-        elif len(password1) < 7:
+        elif len(password1) < 4:
             flash('Passwords shoud be atleast 8 ccharacters', category='error')
         else:
             # method sha256 is a hashing algorithm
