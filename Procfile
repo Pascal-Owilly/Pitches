@@ -1,1 +1,1 @@
-web:gunicorn:website
+web: gunicon app:app
