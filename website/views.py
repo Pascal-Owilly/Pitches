@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note
+from .models import Pitch
 from . import db
 import json
 
@@ -11,27 +11,27 @@ views = Blueprint('views', __name__)
 @login_required
 def home():
     if request.method == 'POST':
-        note = request.form.get('note')
+        pitch = request.form.get('pitch')
 
-        if len(note) < 1:
+        if len(pitch) < 1:
             flash('Pitch is too short!', category='error')
         else:
-            new_note = Note(data=note, user_id=current_user.id)
-            db.session.add(new_note)
+            new_pitch = Pitch(data=pitch, user_id=current_user.id)
+            db.session.add(pitch)
             db.session.commit()
             flash('Comment added!', category='success')
 
     return render_template("home.html", user=current_user)
 
 
-@views.route('/delete-note', methods=['POST'])
-def delete_note():
+@views.route('/delete-pitch', methods=['POST'])
+def delete_pitch():
     note = json.loads(request.data)
-    noteId = note['noteId']
-    note = Note.query.get(noteId)
-    if note:
-        if note.user_id == current_user.id:
-            db.session.delete(note)
+    pitchId = note['pitchId']
+    pitch = Pitch.query.get(pitchId)
+    if pitch:
+        if pitch.user_id == current_user.id:
+            db.session.delete(pitch)
             db.session.commit()
 
     return jsonify({})

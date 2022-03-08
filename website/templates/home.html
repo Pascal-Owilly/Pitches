@@ -1,17 +1,4 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
-
-
-<!-- <form method="POST">
-  <textarea name="note" id="note" class="form-control"></textarea>
-  <br />
-  <div align="center" class="container-fluid text-white bg-black">
-    <h3>Pitches</h3>
-
-    <button type="submit" class="btn btn-danger btn-sm">Add Comment</button>
-  </div>
-</form> -->
-
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6">
@@ -29,18 +16,17 @@
 
           <h6>Leave a pitch below to get votes</h6>
           <form method="POST">
-            <textarea name="note" id="note" class="form-control" placeholder="Add Pitch"></textarea>
+            <textarea name="pitch" id="pitch" class="form-control" placeholder="New pitch here"></textarea>
             <br />
             <div align="center" class="container-fluid text-white bg-black">
 
-              <button align-center type="submit" class="btn btn-primary btn-danger btn-sm">Leave a
-                pitch</button><br><br>
+              <button align-center type="submit" class="btn btn-primary btn-danger btn-sm">Add your new pitch below:</button><br><br>
             </div>
           </form> <br>
 
-          <ul style="background-color: rgb(99, 92, 92);" class="list-group list-group-flush " id="notes">
-            {% for note in user.notes %}
-            {{ note.data }}
+          <ul style="background-color: rgb(99, 92, 92);" class="list-group list-group-flush " id="pitches">
+            {% for pitch in user.pitches %}
+            {{ pitch.data }}
             <li class="list-group-item text-dark">
               <button type="button" id="btn_like" class="btn btn-primary   btn-sm btn">Like <span><i
                     class="glyphicon glyphicon-thumbs-up"></i></span></button>
@@ -48,7 +34,7 @@
                     class="glyphicon glyphicon-thumbs-down"></i></span></button>
 
 
-              <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+              <button type="button" class="close" onClick="deletePitch({{ pitch.id }})">
                 <span aria-hidden="true">&times;</span>
               </button>
             </li>
