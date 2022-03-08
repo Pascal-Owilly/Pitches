@@ -1,5 +1,11 @@
 # Flask Web Application: Pitches
 
+## User Story
+
+upvote, but has to be signed in to leave a comment, receive a welcoming email once they sign up,
+ view the pitches they have created in their profile pages, comment on the different pitches and leave feedback, 
+ submit a pitch in any category and view the different categories.
+
 
 ## Contributers
 
