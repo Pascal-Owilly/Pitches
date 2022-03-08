@@ -26,8 +26,8 @@ def home():
 
 @views.route('/delete-pitch', methods=['POST'])
 def delete_pitch():
-    note = json.loads(request.data)
-    pitchId = note['pitchId']
+    pitch = json.loads(request.data)
+    pitchId = pitch['pitchId']
     pitch = Pitch.query.get(pitchId)
     if pitch:
         if pitch.user_id == current_user.id:
