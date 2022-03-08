@@ -1,4 +1,4 @@
-# Flask Web App Tutorial
+# Flask Web Application: Pitches
 
 
 ## Contributers
@@ -12,13 +12,16 @@ Make sure you have the latest version of Python installed.
 git clone <repo-url>
 ```
 
-```bash
-pip install -r requirements.txt
+Run
+ ```
+pip freeze > requirements.txt
+```
+Then 
 ```
 
 ## Running The App
 
-```bash
+```
 python main.py
 ```
 
