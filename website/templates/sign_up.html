@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
 content %}
-<form method="POST">
+<form method="POST" style="width: 50%; margin-left: 20%;">
   <h3 align="center">Sign Up</h3>
   <div class="form-group">
     <label for="email">Email Address</label>
@@ -33,7 +33,7 @@ content %}
     />
   </div>
   <div class="form-group">
-    <label for="password2">Password (Confirm)</label>
+    <label for="password2">Confirm Password</label>
     <input
       type="password"
       class="form-control"
@@ -43,6 +43,6 @@ content %}
     />
   </div>
   <br />
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-danger">Submit</button>
 </form>
 {% endblock %}
