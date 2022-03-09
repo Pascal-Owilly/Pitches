@@ -1,26 +1,26 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-3">
       <div class="card text-white bg-dark mb-3">
-        <div class="card-header text-center">All pitches</div>
+        
         <div class="card-body">
-          <h5 class="card-title text-center">Oliver Wendel Holmes</h5>
-          <p class="card-text">It is the providence of knowledge to speak and the privilege of wisdom to listen</p>
+          <h5 class="card-title text-center">Status Quo</h5>
+          <p class="card-text">Thinking in innovative ways does utilize a different type of thought and a different part of your brain. It takes time, and it doesn't produce immediate results. </p>
           <button type="button" id="btn_like" class="btn btn-primary btn-danger btn-sm btn">Like <span><i
                 class="glyphicon glyphicon-thumbs-up"></i></span></button>
-          <button type="button" id="btn_dislike" class="btn btn-primary btn-danger btn-sm">Dislike <span><i
+          <button type="button" id="btn_dislike" class="btn btn-primary btn-primary btn-sm">Dislike <span><i
                 class="glyphicon glyphicon-thumbs-down"></i></span></button>
 
           <br><br>
 
-          <h6>Leave a pitch below to get votes</h6>
+         
           <form method="POST">
             <textarea name="pitch" id="pitch" class="form-control" placeholder="New pitch here"></textarea>
             <br />
             <div align="center" class="container-fluid text-white bg-black">
 
-              <button align-center type="submit" class="btn btn-primary btn-danger btn-sm">Add your new pitch below:</button><br><br>
+              <button align-center type="submit" class="btn btn-primary btn-primary btn-sm">Ok</button><br><br>
             </div>
           </form> <br>
 
@@ -45,7 +45,95 @@
       </div>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-3">
+      <div class="card text-white bg-dark mb-3">
+       
+        <div class="card-body">
+          <h5 class="card-title text-center">Interview</h5>
+          <p class="card-text"> I like fast-paced work environments because they make me feel like I’m always learning and growing.</p>
+          <button type="button" id="btn_like" class="btn btn-primary btn-danger btn-sm btn">Like <span><i
+                class="glyphicon glyphicon-thumbs-up"></i></span></button>
+          <button type="button" id="btn_dislike" class="btn btn-primary btn-primary btn-sm">Dislike <span><i
+                class="glyphicon glyphicon-thumbs-down"></i></span></button>
+
+          <br><br>
+
+          
+          <form method="POST">
+            <textarea name="pitch" id="pitch" class="form-control" placeholder="New pitch here"></textarea>
+            <br />
+            <div align="center" class="container-fluid text-white bg-black">
+
+              <button align-center type="submit" class="btn btn-primary btn-primary btn-sm">Ok</button><br><br>
+            </div>
+          </form> <br>
+
+          <ul style="background-color: rgb(99, 92, 92);" class="list-group list-group-flush " id="pitches">
+            {% for pitch in user.pitches %}
+            {{ pitch.data }}
+            <li class="list-group-item text-dark">
+              <button type="button" id="btn_like" class="btn btn-primary   btn-sm btn">Like <span><i
+                    class="glyphicon glyphicon-thumbs-up"></i></span></button>
+              <button type="button" id="btn_dislike" class="btn btn-primary btn-sm">Dislike <span><i
+                    class="glyphicon glyphicon-thumbs-down"></i></span></button>
+
+
+              <button type="button" class="close" onClick="deletePitch({{ pitch.id }})">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </li>
+            {% endfor %}
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h5 class="card-title text-center">Blockchain</h5>
+          <p class="card-text">Blockchain is awesome technology. It’s a mathematical framework that is free of politics and human error.  Bitcoin might be one of the worlds most important developments.</p>
+          <button type="button" id="btn_like" class="btn btn-primary btn-danger btn-sm btn">Like <span><i
+                class="glyphicon glyphicon-thumbs-up"></i></span></button>
+          <button type="button" id="btn_dislike" class="btn btn-primary btn-primary btn-sm">Dislike <span><i
+                class="glyphicon glyphicon-thumbs-down"></i></span></button>
+
+          <br><br>
+
+         
+          <form method="POST">
+            <textarea name="pitch" id="pitch" class="form-control" placeholder="New pitch here"></textarea>
+            <br />
+            <div align="center" class="container-fluid text-white bg-black">
+
+              <button align-center type="submit" class="btn btn-primary btn-primary btn-sm">Ok</button><br><br>
+            </div>
+          </form> <br>
+
+          <ul style="background-color: rgb(99, 92, 92);" class="list-group list-group-flush " id="pitches">
+            {% for pitch in user.pitches %}
+            {{ pitch.data }}
+            <li class="list-group-item text-dark">
+              <button type="button" id="btn_like" class="btn btn-primary   btn-sm btn">Like <span><i
+                    class="glyphicon glyphicon-thumbs-up"></i></span></button>
+              <button type="button" id="btn_dislike" class="btn btn-primary btn-sm">Dislike <span><i
+                    class="glyphicon glyphicon-thumbs-down"></i></span></button>
+
+
+              <button type="button" class="close" onClick="deletePitch({{ pitch.id }})">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </li>
+            {% endfor %}
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-2">
       <h4 align="center"> <p> Status quo <br> <p> Pick up lines <p>  Status quo <p>  Interview <p>  Promotion | <hr>
     </div>
 
@@ -56,13 +144,10 @@
 
 
 
-<footer class="page-footer font-small blue bg-dark">
+  
+</div>
 
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3 text-white">&copy; 2022 Copyright:
 
-  </div>
-  <!-- Copyright -->
 
-</footer>
 {% endblock %}
+
