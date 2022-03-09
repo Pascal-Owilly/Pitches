@@ -1,4 +1,4 @@
-from website.models import User
+from pitch.models import User
 import unittest
 
 from app.models import Comment

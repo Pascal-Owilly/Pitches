@@ -1,5 +1,5 @@
 import unittest
-from website.models import User,Pitch
+from pitch.models import User,Pitch
 from . import db
 
 class UserModelTest(unittest.TestCase):

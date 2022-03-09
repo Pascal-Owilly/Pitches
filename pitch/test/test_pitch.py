@@ -1,5 +1,5 @@
 import unittest
-from website.models import Pitch
+from pitch.models import Pitch
 from . import db
 
 def setUp(self):
