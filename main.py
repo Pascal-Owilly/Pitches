@@ -1,5 +1,4 @@
 from pitch import create_app
-from pitch import app
 
 app = create_app()
 
