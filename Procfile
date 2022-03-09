@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT pitch:pitch
+web: gunicorn --bind 0.0.0.0:$PORT pitch:app
